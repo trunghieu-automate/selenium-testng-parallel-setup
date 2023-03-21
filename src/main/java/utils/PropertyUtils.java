@@ -1,9 +1,12 @@
 package utils;
 
+import org.openqa.selenium.Proxy;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Reading property from properties file.
@@ -44,5 +47,18 @@ public final class PropertyUtils {
         ArrayList<String> list = new ArrayList<>();
         CONFIGMAP.values().stream().filter(k -> k.startsWith("args")).forEach(k -> list.add(CONFIGMAP.get(k)));
         return list;
+    }
+
+    public static Proxy getProxySetting(){
+        if (get(ConfigMap.noProxy).equalsIgnoreCase("false")){
+            Proxy proxy = new Proxy();
+            proxy.setHttpProxy(get(ConfigMap.httpProxyServer));
+            proxy.setHttpProxy(get(ConfigMap.httpProxyServer));
+            proxy.setAutodetect(get(ConfigMap.autodetect).equalsIgnoreCase("true"));
+            return proxy;
+        }
+        else {
+            return new Proxy();
+        }
     }
 }

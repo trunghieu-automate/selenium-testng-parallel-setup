@@ -5,7 +5,12 @@ package utils;
  */
 
 public enum ConfigMap {
-    argsMaximize,
+    argsMaximized,
     argsIgnoreCertificatesError,
-    argsDisablePopupBlocking
+    argsDisablePopupBlocking,
+    proxyServer,
+    noProxy,
+    autodetect,
+    httpProxyServer,
+    sslProxyServer,
 }
